@@ -76,6 +76,8 @@ function VirtualPaking() {
         </div>
       </div>
       <div className="parking-spot-container container-border">
+        <h2>Parking Spots</h2>
+
         <div className="spot-color-info">
           <div className="spot-color-info-occupied"></div>
           &nbsp;&nbsp; Occupied&nbsp;&nbsp;&nbsp;&nbsp;

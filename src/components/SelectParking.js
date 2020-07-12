@@ -18,7 +18,7 @@ function SelectParking() {
   }
   const getParkingLot = () => {
     axios
-      .get("https://fmps.herokuapp.com/api")
+      .get("https://fmps.herokuapp.com/api/vp-parking")
       .then(function (response) {
         console.log(response.data);
         setParkingLot(response.data);

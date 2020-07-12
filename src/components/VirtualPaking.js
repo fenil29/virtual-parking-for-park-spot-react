@@ -14,7 +14,7 @@ function VirtualPaking() {
   let { id } = useParams();
   const getParkingLotInfo = () => {
     axios
-      .get("https://fmps.herokuapp.com/api" + id)
+      .get("https://fmps.herokuapp.com/api/vp-parking" + id)
       .then(function (response) {
         // console.log(response.data[0]);
         setParkingLotInfo(response.data[0]);
@@ -26,7 +26,7 @@ function VirtualPaking() {
   };
   const getParkingSpots = () => {
     axios
-      .get("https://fmps.herokuapp.com/api" + id)
+      .get("https://fmps.herokuapp.com/api/vp-parking" + id)
       .then(function (response) {
         console.log(response.data);
         setParkingSpots(response.data);

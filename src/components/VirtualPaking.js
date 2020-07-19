@@ -6,6 +6,9 @@ import axios from "axios";
 
 import QRCode from "qrcode.react";
 
+import { message} from "antd";
+
+
 function VirtualPaking() {
   const [loading, setLoading] = useState(true);
   const [parkingLotInfo, setParkingLotInfo] = useState([]);
@@ -14,7 +17,7 @@ function VirtualPaking() {
   let { id } = useParams();
   const getParkingLotInfo = () => {
     axios
-      .get("https://fmps.herokuapp.com/api/vp-parking/id/" + id)
+      .get("https://park-spot-api.herokuapp.com/vp-parking/id/" + id)
       .then(function (response) {
         // console.log(response.data[0]);
         setParkingLotInfo(response.data[0]);
@@ -22,17 +25,20 @@ function VirtualPaking() {
       })
       .catch(function (error) {
         console.log(error);
+        setLoading(false);
+
       });
   };
   const getParkingSpots = () => {
     axios
-      .get("https://fmps.herokuapp.com/api/vp-parkings-pots/" + id)
+      .get("https://park-spot-api.herokuapp.com/vp-parkings-pots/" + id)
       .then(function (response) {
         console.log(response.data);
         setParkingSpots(response.data);
       })
       .catch(function (error) {
         console.log(error);
+        message.error("Something went wrong. Please try again");
       });
   };
   useEffect(() => {

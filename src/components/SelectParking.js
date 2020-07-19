@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { useHistory } from "react-router-dom";
 
-import { Select } from "antd";
+import { Select ,message} from "antd";
 const { Option } = Select;
 
 function SelectParking() {
@@ -18,14 +18,17 @@ function SelectParking() {
   }
   const getParkingLot = () => {
     axios
-      .get("https://fmps.herokuapp.com/api/vp-parking")
+      .get("https://park-spot-api.herokuapp.com/vp-parking")
       .then(function (response) {
         console.log(response.data);
         setParkingLot(response.data);
         setLoading(false);
       })
       .catch(function (error) {
+        message.error("Something went wrong. Please try again");
         console.log(error);
+        setLoading(false);
+
       });
   };
   useEffect(() => {

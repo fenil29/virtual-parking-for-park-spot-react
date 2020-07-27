@@ -6,8 +6,7 @@ import axios from "axios";
 
 import QRCode from "qrcode.react";
 
-import { message} from "antd";
-
+import { message } from "antd";
 
 function VirtualPaking() {
   const [loading, setLoading] = useState(true);
@@ -26,7 +25,6 @@ function VirtualPaking() {
       .catch(function (error) {
         console.log(error);
         setLoading(false);
-
       });
   };
   const getParkingSpots = () => {
@@ -41,12 +39,17 @@ function VirtualPaking() {
         message.error("Something went wrong. Please try again");
       });
   };
+
   useEffect(() => {
     getParkingLotInfo();
     getParkingSpots();
 
-    setInterval(getParkingSpots, 1500);
+    var getSpot = setInterval(getParkingSpots, 1500);
+    return () => {
+      clearInterval(getSpot);
+    };
   }, []);
+
   let parkingLotDataEntry = {
     id: id,
     type: "find-my-spot-qr-code",

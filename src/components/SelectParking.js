@@ -17,14 +17,17 @@ function SelectParking() {
     history.push(`/${value}`);
   }
   const getParkingLot = () => {
+    const loadingMessage = message.loading('Loading...', 0);
     axios
       .get("https://park-spot-api.herokuapp.com/vp-parking")
       .then(function (response) {
         console.log(response.data);
         setParkingLot(response.data);
+        loadingMessage()
         setLoading(false);
       })
       .catch(function (error) {
+        loadingMessage()
         message.error("Something went wrong. Please try again");
         console.log(error);
         setLoading(false);
